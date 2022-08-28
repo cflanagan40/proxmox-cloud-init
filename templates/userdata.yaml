@@ -1,0 +1,17 @@
+#cloud-config
+users:
+  - name: ${username}
+    ssh-authorized-keys:
+      - ${ssh_public_key}
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    groups: sudo
+    shell: /bin/bash
+
+packages: ${packages}
+package_update: true
+package_upgrade: true
+
+fqdn: ${hostname}
+
+power_state:
+  mode: reboot

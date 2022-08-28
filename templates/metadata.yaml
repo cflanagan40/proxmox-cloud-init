@@ -1,0 +1,16 @@
+local-hostname: ${hostname}
+instance-id: ${hostname}
+network:
+  version: 2
+  ethernets:
+    ens18:
+      %{ if dhcp == "true" }
+      dhcp4: true
+      dhcp-identifier: mac
+      %{ else }addresses:
+        - ${ip_address}/${netmask}
+      gateway4: ${gateway}
+      nameservers:
+        addresses: ${nameservers}
+          
+      %{ endif }
